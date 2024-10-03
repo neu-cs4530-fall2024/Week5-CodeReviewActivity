@@ -1,6 +1,5 @@
-
 export enum ActionKeys {
-  'CLEAR' = 'C',
-  'EQUALS' = '=',
-  'DOT' = '.'
+  "CLEAR" = "C",
+  "EQUALS" = "=",
+  "DOT" = ".",
 }

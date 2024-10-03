@@ -1,14 +1,12 @@
-
-import { ActionKeys } from '../enums/action-keys.enum';
-import { NumericKeys } from '../enums/numeric-keys.enum';
-import { OperatorKeys } from '../enums/operator-keys.enum';
-import { State } from '../enums/state.enum';
-import { ICalculatorModel } from '../interfaces/calculator-model.interface';
-const assert = require('assert');
+import { ActionKeys } from "../enums/action-keys.enum";
+import { NumericKeys } from "../enums/numeric-keys.enum";
+import { OperatorKeys } from "../enums/operator-keys.enum";
+import { State } from "../enums/state.enum";
+import { ICalculatorModel } from "../interfaces/calculator-model.interface";
+const assert = require("assert");
 
 export class CalculatorModel implements ICalculatorModel {
-
-  private _buffer: string = '';
+  private _buffer: string = "";
   private _numberStack: number[] = [];
   private _operatorStack: OperatorKeys[] = [];
   private _state: State = State.ENTERING_FIRST_OPERAND;
@@ -28,7 +26,7 @@ export class CalculatorModel implements ICalculatorModel {
   private pushNumber(): void {
     const num: number = parseFloat(this._buffer);
     this._numberStack.push(num);
-    this._buffer = '';
+    this._buffer = "";
   }
 
   private popNumber(): number {
@@ -50,7 +48,7 @@ export class CalculatorModel implements ICalculatorModel {
         const left: number = this.popNumber();
         const result: number = this.compute(op, left, right);
         this._numberStack = [result];
-        this._buffer = '';
+        this._buffer = "";
       } else {
         assert(key === OperatorKeys.MULT || key === OperatorKeys.DIV);
         this.setState(State.ENTERING_THIRD_OPERAND);
@@ -90,11 +88,11 @@ export class CalculatorModel implements ICalculatorModel {
   public pressActionKey(key: ActionKeys): void {
     switch (key) {
       case ActionKeys.CLEAR:
-        this._buffer = '';
+        this._buffer = "";
         this.setState(State.ENTERING_FIRST_OPERAND);
         break;
       case ActionKeys.DOT:
-        this._buffer += '.';
+        this._buffer += ".";
         break;
       case ActionKeys.EQUALS: {
         this.pushNumber();
@@ -127,12 +125,11 @@ export class CalculatorModel implements ICalculatorModel {
         break;
       }
       default:
-        throw new Error('Invalid Action');
+        throw new Error("Invalid Action");
     }
   }
 
   public display(): string {
     return this._buffer;
   }
-
 }

@@ -1,12 +1,10 @@
-(function(){
-
-  'use strict';
+(function () {
+  "use strict";
 
   module.exports = {
     presets: [
-      ['@babel/preset-env', {targets: {node: 'current'}}],
-      '@babel/preset-typescript'
+      ["@babel/preset-env", { targets: { node: "current" } }],
+      "@babel/preset-typescript",
     ],
-  }
-
-}());
+  };
+})();

@@ -59,9 +59,7 @@
     // errorOnDeprecated: false,
 
     // Force coverage collection from ignored files using an array of glob patterns
-    forceCoverageMatch: [
-      "**/*.ts"
-    ],
+    forceCoverageMatch: ["**/*.ts"],
 
     // A path to a module which exports an async function that is triggered once before all test suites
     // globalSetup: undefined,
@@ -159,7 +157,7 @@
     testMatch: [
       // "**/__tests__/**/*.[jt]s?(x)",
       // "**/?(*.)+(spec|test).[tj]s?(x)"
-      "**/?(*.)+(spec|test).ts"
+      "**/?(*.)+(spec|test).ts",
     ],
 
     // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
@@ -185,10 +183,9 @@
     // A map from regular expressions to paths to transformers
     // transform: undefined,
 
-
-      "transform": {
-        "^.+\\.(ts|tsx)$": "ts-jest",
-      },
+    transform: {
+      "^.+\\.(ts|tsx)$": "ts-jest",
+    },
 
     // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
     // transformIgnorePatterns: [
@@ -208,5 +205,4 @@
     // Whether to use watchman for file crawling
     // watchman: true,
   };
-
-}());
+})();

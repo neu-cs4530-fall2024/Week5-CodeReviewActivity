@@ -8,11 +8,6 @@
     "allowJs": true,
     "moduleDetection": "force"
   },
-  "include": [
-    "**/*.ts"
-  ],
-  "exclude": [
-    "node_modules/*",
-    "**/*.js"
-  ]
+  "include": ["**/*.ts"],
+  "exclude": ["node_modules/*", "**/*.js"]
 }
