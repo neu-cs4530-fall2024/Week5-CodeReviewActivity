@@ -23,7 +23,7 @@ export class CalculatorModel implements ICalculatorModel {
     this._buffer += key;
   }
 
-  private pushNumber(): void {
+  private pushBuffer(): void {
     const num: number = parseFloat(this._buffer);
     this._numberStack.push(num);
     this._buffer = "";
@@ -37,13 +37,29 @@ export class CalculatorModel implements ICalculatorModel {
   }
 
   public pressOperatorKey(key: OperatorKeys): void {
-    this.pushNumber();
+    this.pushBuffer();
     if (this.getState() === State.ENTERING_FIRST_OPERAND) {
-      this.setState(State.ENTERING_SECOND_OPERAND);
+      if (
+        this._operatorStack.length > 0 &&
+        this._operatorStack[this._operatorStack.length - 1] ===
+        OperatorKeys.SQRT
+      ) {
+        this._operatorStack.pop();
+        const num: number = this.popNumber();
+        console.log("doing sqrt", num);
+        const result: number = Math.sqrt(num);
+        console.log("...it's", result);
+        this._numberStack = [result];
+      }
+      if (key !== OperatorKeys.SQRT) {
+        // I do not understand what is going on here
+        this.setState(State.ENTERING_SECOND_OPERAND);
+      }
     } else if (this.getState() === State.ENTERING_SECOND_OPERAND) {
       if (key === OperatorKeys.PLUS || key === OperatorKeys.MINUS) {
         const op: OperatorKeys = this._operatorStack.pop();
         // We can always collapse the stack.
+        assert(this._numberStack.length === 2);
         const right: number = this.popNumber();
         const left: number = this.popNumber();
         const result: number = this.compute(op, left, right);
@@ -95,11 +111,22 @@ export class CalculatorModel implements ICalculatorModel {
         this._buffer += ".";
         break;
       case ActionKeys.EQUALS: {
-        this.pushNumber();
+        this.pushBuffer();
         if (this.getState() === State.ENTERING_FIRST_OPERAND) {
-          this._buffer = this.popNumber().toString();
+          if (
+            this._operatorStack[this._operatorStack.length - 1] ===
+            OperatorKeys.SQRT
+          ) {
+            this._operatorStack.pop();
+            const num: number = this.popNumber();
+            const result: number = Math.sqrt(num);
+            this._buffer = result.toString();
+          } else {
+            this._buffer = this.popNumber().toString();
+          }
         } else if (this.getState() === State.ENTERING_SECOND_OPERAND) {
           const op: OperatorKeys = this._operatorStack.pop();
+          assert(this._numberStack.length === 2);
           const right: number = this.popNumber();
           const left: number = this.popNumber();
           const result: number = this.compute(op, left, right);

@@ -269,6 +269,46 @@ describe("CalculatorModel", (): void => {
     calculator.pressActionKey(ActionKeys.EQUALS);
     expect(calculator.display()).toEqual("1");
   });
+
+  it("should display `1` with `sqrt(1)`", (): void => {
+    calculator.pressOperatorKey(OperatorKeys.SQRT);
+    calculator.pressNumericKey(NumericKeys.ONE);
+    calculator.pressActionKey(ActionKeys.EQUALS);
+    const displayValue: string = calculator.display();
+    expect(displayValue).toEqual("1");
+  });
+
+  it("should display `2` with `sqrt(4)`", (): void => {
+    calculator.pressOperatorKey(OperatorKeys.SQRT);
+    calculator.pressNumericKey(NumericKeys.FOUR);
+    calculator.pressActionKey(ActionKeys.EQUALS);
+    const displayValue: string = calculator.display();
+    expect(displayValue).toEqual("2");
+  });
+
+  it("should display `10` with `sqrt(9)+7)`", (): void => {
+    calculator.pressOperatorKey(OperatorKeys.SQRT);
+    calculator.pressNumericKey(NumericKeys.NINE);
+    calculator.pressOperatorKey(OperatorKeys.PLUS);
+    calculator.pressNumericKey(NumericKeys.SEVEN);
+    calculator.pressActionKey(ActionKeys.EQUALS);
+    const displayValue: string = calculator.display();
+    expect(displayValue).toEqual("10");
+  });
+
+  it("should display `21` with `sqrt(9)*7)`", (): void => {
+    calculator.pressOperatorKey(OperatorKeys.SQRT);
+    calculator.pressNumericKey(NumericKeys.NINE);
+    calculator.pressOperatorKey(OperatorKeys.MULT);
+    calculator.pressNumericKey(NumericKeys.SEVEN);
+    calculator.pressActionKey(ActionKeys.EQUALS);
+    const displayValue: string = calculator.display();
+    expect(displayValue).toEqual("21");
+  });
+
+  // TODO(max): Test sqrt(negative)
+  // TODO(max): Support sqrt(sqrt(n))
+  // TODO(max): Test 1+2+3+4... are they even legal?
 });
 
 describe("CalculatorStateMachine", (): void => {
