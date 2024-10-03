@@ -269,6 +269,46 @@ describe("CalculatorModel", (): void => {
     calculator.pressActionKey(ActionKeys.EQUALS);
     expect(calculator.display()).toEqual("1");
   });
+
+  it("should display e**1 with `exp(1)`", (): void => {
+    calculator.pressOperatorKey(OperatorKeys.EXP);
+    calculator.pressNumericKey(NumericKeys.ONE);
+    calculator.pressActionKey(ActionKeys.EQUALS);
+    const displayValue: string = calculator.display();
+    expect(displayValue).toEqual("2.718281828459045");
+  });
+
+  it("should display e**4 with `exp(4)`", (): void => {
+    calculator.pressOperatorKey(OperatorKeys.EXP);
+    calculator.pressNumericKey(NumericKeys.FOUR);
+    calculator.pressActionKey(ActionKeys.EQUALS);
+    const displayValue: string = calculator.display();
+    expect(displayValue).toEqual("54.598150033144236");
+  });
+
+  it("should display (e**9)+7 with `exp(9)+7)`", (): void => {
+    calculator.pressOperatorKey(OperatorKeys.EXP);
+    calculator.pressNumericKey(NumericKeys.NINE);
+    calculator.pressOperatorKey(OperatorKeys.PLUS);
+    calculator.pressNumericKey(NumericKeys.SEVEN);
+    calculator.pressActionKey(ActionKeys.EQUALS);
+    const displayValue: string = calculator.display();
+    expect(displayValue).toEqual("8110.083927575384");
+  });
+
+  it("should display (e**9)*7 with `exp(9)*7)`", (): void => {
+    calculator.pressOperatorKey(OperatorKeys.EXP);
+    calculator.pressNumericKey(NumericKeys.NINE);
+    calculator.pressOperatorKey(OperatorKeys.MULT);
+    calculator.pressNumericKey(NumericKeys.SEVEN);
+    calculator.pressActionKey(ActionKeys.EQUALS);
+    const displayValue: string = calculator.display();
+    expect(displayValue).toEqual("56721.58749302769");
+  });
+
+  // TODO(max): Test exp(negative)
+  // TODO(max): Support exp(exp(n))
+  // TODO(max): Test 1+2+3+4... are they even legal?
 });
 
 describe("CalculatorStateMachine", (): void => {

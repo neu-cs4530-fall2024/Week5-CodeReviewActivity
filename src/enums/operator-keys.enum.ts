@@ -3,4 +3,5 @@ export enum OperatorKeys {
   MINUS = "-",
   MULT = "*",
   DIV = "/",
+  EXP = "exp",
 }
