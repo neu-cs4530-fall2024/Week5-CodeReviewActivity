@@ -46,5 +46,5 @@ Have fun.
 
 ## Submission
 
-Make sure you publish your review, and _only when we tell you to_. That is your
-submission. There is no Gradescope component.
+Make sure you publish your review, and _only when we tell you to_.
+After submitting your review, please take a screenshot of your comments and upload it to Gradescope.
