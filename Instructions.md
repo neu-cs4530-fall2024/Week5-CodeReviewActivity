@@ -34,7 +34,7 @@ Have fun.
 
 ## Details
 
-1. Navigate to https://github.com/neu-cs4530-fall2023/code-review-calculator
+1. Navigate to https://github.com/neu-cs4530-fall2024/Week5-CodeReviewActivity
    and find the open pull request.
 2. Go to the "Conversation" tab (the default) and read the summary.
 3. Go to the "Files changed" tab and click any + sign next to a changed line to
